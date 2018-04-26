@@ -1,6 +1,6 @@
 <?php
 	//声明一个常量定义一个token值, token
-	define("TOKEN", "glfshidashuaige");
+	define("TOKEN", "c1DVqzWwwBd3WWQUzxDrR0VX01SBud10");
 
 	//通过Wechat类， 创建一个对象
 	$wechatObj = new Wechat();
@@ -23,29 +23,29 @@
 
 
 		//在开发者首次提交验证申请时，微信服务器将发送GET请求到填写的URL上，并且带上四个参数（signature、timestamp、nonce、echostr），开发者通过对签名（即signature）的效验，来判断此条消息的真实性。 
-       	 	$echoStr = $_GET["echostr"];    // 随机字符串 
-        	$signature = $_GET["signature"]; //微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
-       		 $timestamp = $_GET["timestamp"]; //时间戳 
-       		 $nonce = $_GET["nonce"];  // 随机数 
+        $echoStr = $_GET["echostr"];    // 随机字符串 
+        $signature = $_GET["signature"]; //微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
+        $timestamp = $_GET["timestamp"]; //时间戳 
+        $nonce = $_GET["nonce"];  // 随机数 
 		
 		 //上面通过常量声明的token值
 		 $token = TOKEN;
 
 		 //将token、timestamp、nonce三个参数进行字典序排序
-        	$tmpArr = array($token, $timestamp, $nonce);
-		 sort($tmpArr);
+    	$tmpArr = array($token, $timestamp, $nonce);
+	    sort($tmpArr);
 
 
 		 //将三个参数字符串拼接成一个字符串进行sha1加密
-        	$tmpStr = implode($tmpArr); //将数排序过的数组组合成一个字符
-        	$tmpStr = sha1($tmpStr);   //使用sha1加密
+    	$tmpStr = implode($tmpArr); //将数排序过的数组组合成一个字符
+    	$tmpStr = sha1($tmpStr);   //使用sha1加密
 
 		//如果公众号上的签名和服务器上的签名是相等的则验正成功
   		if( $tmpStr == $signature ){
-            		 return true;
-    		}else{
-            		 return false;
-     		}
+        		 return true;
+		}else{
+        		 return false;
+ 		}
 		
    	 }
 
