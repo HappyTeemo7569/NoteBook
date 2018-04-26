@@ -1,6 +1,6 @@
 <?php
 	//声明一个常量定义一个token值, token
-	define("TOKEN", "c1DVqzWwwBd3WWQUzxDrR0VX01SBud10");
+	define("TOKEN", "weixin");
 
 	//通过Wechat类， 创建一个对象
 	$wechatObj = new Wechat();
